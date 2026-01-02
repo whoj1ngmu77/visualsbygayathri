@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Palette, Heart, Zap } from 'lucide-react';
+import profilePhoto from '@/assets/profile-photo.png';
 
 export const AboutSection = () => {
   const ref = useRef(null);
@@ -40,17 +41,13 @@ export const AboutSection = () => {
             className="relative"
           >
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden gradient-border">
-              <div className="absolute inset-[1px] rounded-2xl bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
-                <div className="text-center p-8">
-                  <motion.div
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                    className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-r from-primary to-accent opacity-20"
-                  />
-                  <p className="font-serif text-2xl text-muted-foreground italic">
-                    "Design is thinking made visual"
-                  </p>
-                </div>
+              <div className="absolute inset-[1px] rounded-2xl overflow-hidden">
+                <img 
+                  src={profilePhoto} 
+                  alt="Designer portrait" 
+                  className="w-full h-full object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
               </div>
             </div>
             

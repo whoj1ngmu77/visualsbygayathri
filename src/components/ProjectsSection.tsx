@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+import design002 from '@/assets/posters/design002.png';
+import design003 from '@/assets/posters/design003.png';
 
 type Category = 'all' | 'social' | 'posters' | 'logos' | 'other';
 
@@ -22,18 +24,14 @@ const categories: { id: Category; label: string }[] = [
 ];
 
 const projects: Project[] = [
-  { id: 1, title: 'Summer Campaign', category: 'social', image: '', color: 'from-pink-500/20 to-orange-500/20', height: 'h-72' },
-  { id: 2, title: 'Brand Identity', category: 'logos', image: '', color: 'from-blue-500/20 to-purple-500/20', height: 'h-96' },
-  { id: 3, title: 'Event Poster', category: 'posters', image: '', color: 'from-green-500/20 to-teal-500/20', height: 'h-80' },
-  { id: 4, title: 'Product Launch', category: 'social', image: '', color: 'from-amber-500/20 to-red-500/20', height: 'h-64' },
-  { id: 5, title: 'Music Festival', category: 'posters', image: '', color: 'from-violet-500/20 to-fuchsia-500/20', height: 'h-96' },
+  { id: 1, title: 'Little by Little', category: 'posters', image: design002, color: 'from-purple-500/20 to-indigo-500/20', height: 'h-96' },
+  { id: 2, title: 'Who Are You?', category: 'posters', image: design003, color: 'from-pink-500/20 to-purple-500/20', height: 'h-96' },
+  { id: 3, title: 'Summer Campaign', category: 'social', image: '', color: 'from-pink-500/20 to-orange-500/20', height: 'h-72' },
+  { id: 4, title: 'Brand Identity', category: 'logos', image: '', color: 'from-blue-500/20 to-purple-500/20', height: 'h-80' },
+  { id: 5, title: 'Product Launch', category: 'social', image: '', color: 'from-amber-500/20 to-red-500/20', height: 'h-64' },
   { id: 6, title: 'Tech Startup Logo', category: 'logos', image: '', color: 'from-cyan-500/20 to-blue-500/20', height: 'h-72' },
   { id: 7, title: 'Art Exhibition', category: 'other', image: '', color: 'from-rose-500/20 to-pink-500/20', height: 'h-80' },
   { id: 8, title: 'Instagram Series', category: 'social', image: '', color: 'from-indigo-500/20 to-purple-500/20', height: 'h-64' },
-  { id: 9, title: 'Coffee Shop Brand', category: 'logos', image: '', color: 'from-amber-600/20 to-yellow-500/20', height: 'h-72' },
-  { id: 10, title: 'Film Poster', category: 'posters', image: '', color: 'from-slate-500/20 to-gray-500/20', height: 'h-96' },
-  { id: 11, title: 'Digital Illustration', category: 'other', image: '', color: 'from-emerald-500/20 to-lime-500/20', height: 'h-80' },
-  { id: 12, title: 'Story Highlights', category: 'social', image: '', color: 'from-pink-400/20 to-purple-500/20', height: 'h-64' },
 ];
 
 export const ProjectsSection = () => {
@@ -112,21 +110,31 @@ export const ProjectsSection = () => {
                 className={`relative ${project.height} rounded-2xl overflow-hidden group cursor-pointer gradient-border`}
                 style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
               >
-                {/* Gradient Background */}
-                <div className={`absolute inset-[1px] rounded-2xl bg-gradient-to-br ${project.color}`} />
+                {/* Image or Gradient Background */}
+                {project.image ? (
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="absolute inset-[1px] w-[calc(100%-2px)] h-[calc(100%-2px)] rounded-2xl object-cover"
+                  />
+                ) : (
+                  <div className={`absolute inset-[1px] rounded-2xl bg-gradient-to-br ${project.color}`} />
+                )}
                 
-                {/* Content Overlay */}
-                <div className="absolute inset-[1px] rounded-2xl bg-card/80 backdrop-blur-sm flex items-center justify-center transition-all duration-300 group-hover:bg-card/60">
-                  <div className="text-center p-6">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent" />
+                {/* Content Overlay - only show for placeholder projects */}
+                {!project.image && (
+                  <div className="absolute inset-[1px] rounded-2xl bg-card/80 backdrop-blur-sm flex items-center justify-center transition-all duration-300 group-hover:bg-card/60">
+                    <div className="text-center p-6">
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent" />
+                      </div>
+                      <h3 className="font-serif text-lg font-medium mb-2">{project.title}</h3>
+                      <span className="text-xs text-muted-foreground uppercase tracking-wider">
+                        {categories.find(c => c.id === project.category)?.label}
+                      </span>
                     </div>
-                    <h3 className="font-serif text-lg font-medium mb-2">{project.title}</h3>
-                    <span className="text-xs text-muted-foreground uppercase tracking-wider">
-                      {categories.find(c => c.id === project.category)?.label}
-                    </span>
                   </div>
-                </div>
+                )}
 
                 {/* Hover Effect */}
                 <motion.div
