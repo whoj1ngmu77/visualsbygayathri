@@ -4,37 +4,31 @@ import { Download, Calendar, Briefcase, GraduationCap } from 'lucide-react';
 
 const experience = [
   {
-    title: 'Senior Graphic Designer',
-    company: 'Creative Studio',
-    period: '2022 - Present',
-    description: 'Leading brand identity projects and mentoring junior designers.',
+    title: 'Design & Creative Exploration',
+    company: 'Personal Projects & Club Activities',
+    period: '2024 - Present',
+    description: 'While majoring in a technology-focused discipline, I consistently pursue my interest in design through personal projects, academic work, and club activities. I actively experiment with graphic design, visual branding, and digital layouts.',
   },
   {
-    title: 'Graphic Designer',
-    company: 'Design Agency',
-    period: '2020 - 2022',
-    description: 'Created visual content for diverse clients across industries.',
-  },
-  {
-    title: 'Junior Designer',
-    company: 'Marketing Firm',
-    period: '2018 - 2020',
-    description: 'Developed social media graphics and marketing materials.',
+    title: 'Creative Problem Solver',
+    company: 'Academic & Collaborative Work',
+    period: 'Ongoing',
+    description: 'I enjoy working on open projects, collaborating with peers, and exploring how design and technology intersect. Using design as both a creative outlet and a problem-solving tool.',
   },
 ];
 
 const education = [
   {
-    title: 'Bachelor of Fine Arts',
-    institution: 'Design University',
-    period: '2014 - 2018',
-    description: 'Specialized in Visual Communication and Digital Media.',
+    title: 'Bachelor of Technology (B.Tech)',
+    institution: 'Vellore Institute of Technology',
+    period: '2024 - 2028',
+    description: 'Specialized in Electrical and Computer Science Engineering, with a strong foundation in problem-solving, logic, and technical thinking — skills that complement my creative approach to design.',
   },
   {
     title: 'UX Design Certificate',
-    institution: 'Online Academy',
-    period: '2021',
-    description: 'Completed comprehensive UX/UI design program.',
+    institution: 'Coursera',
+    period: '2026',
+    description: 'Completed a comprehensive UX/UI design program, gaining hands-on experience in user research, wireframing, prototyping, and usability principles, culminating in a capstone project focused on solving real-world design challenges.',
   },
 ];
 

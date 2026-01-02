@@ -78,16 +78,23 @@ export const AboutSection = () => {
               <span className="text-gradient">life</span>
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              I'm a passionate graphic designer dedicated to creating visual experiences 
-              that resonate and inspire. With a keen eye for aesthetics and a love for 
-              storytelling, I craft designs that not only look beautiful but also 
-              communicate powerful messages.
+              Hi, I'm Gayathri Menon — a design enthusiast with a growing passion for 
+              creating visual experiences that resonate and inspire. I'm currently 
+              pursuing my Bachelor of Technology while exploring graphic design 
+              alongside my academic journey.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-8">
+              What began as a personal interest gradually evolved into a creative outlet 
+              where I experiment with branding, social media visuals, posters, and 
+              digital storytelling. I enjoy translating ideas into clean, aesthetic 
+              visuals and believe that good design lies at the intersection of clarity, 
+              emotion, and purpose.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-12">
-              From brand identities to social media content, I approach each project 
-              with fresh perspectives and meticulous attention to detail. My goal is 
-              to help brands and individuals express their unique stories through 
-              thoughtful, impactful design.
+              I approach each project with fresh perspectives and attention to detail, 
+              aiming to create designs that are both visually compelling and meaningful. 
+              I'm constantly learning, exploring new tools, and refining my style with 
+              every project I take on.
             </p>
 
             {/* Values */}
