@@ -1,8 +1,20 @@
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+
+// Posters
 import design002 from '@/assets/posters/design002.png';
 import design003 from '@/assets/posters/design003.png';
+import thanimaArcade from '@/assets/posters/thanima-arcade.png';
+import design004 from '@/assets/posters/design004.png';
+import posterFalling from '@/assets/posters/poster-falling.png';
+import posterIswhatitis from '@/assets/posters/poster-iswhatitis.png';
+
+// Social Media
+import keralaUntangled from '@/assets/social/kerala-untangled.png';
+import satyagraha from '@/assets/social/satyagraha.png';
+import kadhakaludeLokam from '@/assets/social/kadhakalude-lokam.png';
+import kavyanilaavu from '@/assets/social/kavyanilaavu.png';
 
 type Category = 'all' | 'social' | 'posters' | 'logos' | 'other';
 
@@ -24,14 +36,19 @@ const categories: { id: Category; label: string }[] = [
 ];
 
 const projects: Project[] = [
-  { id: 1, title: 'Little by Little', category: 'posters', image: design002, color: 'from-purple-500/20 to-indigo-500/20', height: 'h-96' },
-  { id: 2, title: 'Who Are You?', category: 'posters', image: design003, color: 'from-pink-500/20 to-purple-500/20', height: 'h-96' },
-  { id: 3, title: 'Summer Campaign', category: 'social', image: '', color: 'from-pink-500/20 to-orange-500/20', height: 'h-72' },
-  { id: 4, title: 'Brand Identity', category: 'logos', image: '', color: 'from-blue-500/20 to-purple-500/20', height: 'h-80' },
-  { id: 5, title: 'Product Launch', category: 'social', image: '', color: 'from-amber-500/20 to-red-500/20', height: 'h-64' },
-  { id: 6, title: 'Tech Startup Logo', category: 'logos', image: '', color: 'from-cyan-500/20 to-blue-500/20', height: 'h-72' },
-  { id: 7, title: 'Art Exhibition', category: 'other', image: '', color: 'from-rose-500/20 to-pink-500/20', height: 'h-80' },
-  { id: 8, title: 'Instagram Series', category: 'social', image: '', color: 'from-indigo-500/20 to-purple-500/20', height: 'h-64' },
+  // Posters (1-4 as mentioned + existing 2)
+  { id: 1, title: 'Thanima Arcade', category: 'posters', image: thanimaArcade, color: 'from-red-500/20 to-amber-500/20', height: 'h-96' },
+  { id: 2, title: 'Seasonal Depression', category: 'posters', image: design004, color: 'from-cyan-500/20 to-blue-500/20', height: 'h-72' },
+  { id: 3, title: 'Falling Off The Face Of Earth', category: 'posters', image: posterFalling, color: 'from-purple-500/20 to-pink-500/20', height: 'h-96' },
+  { id: 4, title: 'It Is What It Is', category: 'posters', image: posterIswhatitis, color: 'from-amber-500/20 to-orange-500/20', height: 'h-96' },
+  { id: 5, title: 'Little by Little', category: 'posters', image: design002, color: 'from-purple-500/20 to-indigo-500/20', height: 'h-96' },
+  { id: 6, title: 'Who Are You?', category: 'posters', image: design003, color: 'from-pink-500/20 to-purple-500/20', height: 'h-96' },
+  
+  // Social Media (5,6,8,9,10)
+  { id: 7, title: 'Kerala Untangled', category: 'social', image: keralaUntangled, color: 'from-green-500/20 to-amber-500/20', height: 'h-96' },
+  { id: 8, title: 'Satyagraha', category: 'social', image: satyagraha, color: 'from-teal-500/20 to-cyan-500/20', height: 'h-96' },
+  { id: 9, title: 'Kadhakalude Lokam', category: 'social', image: kadhakaludeLokam, color: 'from-sky-500/20 to-blue-500/20', height: 'h-96' },
+  { id: 10, title: 'Kavyanilaavu', category: 'social', image: kavyanilaavu, color: 'from-blue-500/20 to-indigo-500/20', height: 'h-96' },
 ];
 
 export const ProjectsSection = () => {
@@ -148,7 +165,7 @@ export const ProjectsSection = () => {
                     className="text-center text-primary-foreground"
                   >
                     <ExternalLink className="w-8 h-8 mx-auto mb-3" />
-                    <span className="text-sm font-medium">View Project</span>
+                    <span className="text-sm font-medium">{project.title}</span>
                   </motion.div>
                 </motion.div>
               </motion.div>
