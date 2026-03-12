@@ -15,6 +15,8 @@ import keralaUntangled from '@/assets/social/kerala-untangled.png';
 import satyagraha from '@/assets/social/satyagraha.png';
 import kadhakaludeLokam from '@/assets/social/kadhakalude-lokam.png';
 import kavyanilaavu from '@/assets/social/kavyanilaavu.png';
+import burnoutSigns from '@/assets/social/burnout-signs.png';
+import mentalWellness from '@/assets/social/mental-wellness.png';
 
 type Category = 'all' | 'social' | 'posters' | 'logos' | 'other';
 
@@ -49,6 +51,8 @@ const projects: Project[] = [
   { id: 8, title: 'Satyagraha', category: 'social', image: satyagraha, color: 'from-teal-500/20 to-cyan-500/20', height: 'h-96' },
   { id: 9, title: 'Kadhakalude Lokam', category: 'social', image: kadhakaludeLokam, color: 'from-sky-500/20 to-blue-500/20', height: 'h-96' },
   { id: 10, title: 'Kavyanilaavu', category: 'social', image: kavyanilaavu, color: 'from-blue-500/20 to-indigo-500/20', height: 'h-96' },
+  { id: 11, title: 'Burnout Signs', category: 'social', image: burnoutSigns, color: 'from-rose-500/20 to-pink-500/20', height: 'h-96' },
+  { id: 12, title: 'Mental Wellness Tips', category: 'social', image: mentalWellness, color: 'from-sky-500/20 to-cyan-500/20', height: 'h-96' },
 ];
 
 export const ProjectsSection = () => {
