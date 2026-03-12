@@ -15,6 +15,8 @@ import keralaUntangled from '@/assets/social/kerala-untangled.png';
 import satyagraha from '@/assets/social/satyagraha.png';
 import kadhakaludeLokam from '@/assets/social/kadhakalude-lokam.png';
 import kavyanilaavu from '@/assets/social/kavyanilaavu.png';
+import burnoutSigns from '@/assets/social/burnout-signs.png';
+import mentalWellness from '@/assets/social/mental-wellness.png';
 
 type Category = 'all' | 'social' | 'posters' | 'logos' | 'other';
 
