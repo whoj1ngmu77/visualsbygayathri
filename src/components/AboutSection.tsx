@@ -44,7 +44,7 @@ export const AboutSection = () => {
               <div className="absolute inset-[1px] rounded-2xl overflow-hidden">
                 <img 
                   src={profilePhoto} 
-                  alt="Designer portrait" 
+                  alt="Gayathri Menon, graphic designer" 
                   className="w-full h-full object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />

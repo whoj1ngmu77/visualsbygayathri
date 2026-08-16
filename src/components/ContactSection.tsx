@@ -12,13 +12,68 @@ export const ContactSection = () => {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSending, setIsSending] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+
     e.preventDefault();
-    toast({
-      title: 'Message sent!',
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    setFormData({ name: '', email: '', message: '' });
+
+    setIsSending(true);
+
+    try {
+
+      const res = await fetch('https://api.web3forms.com/submit', {
+
+        method: 'POST',
+
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+
+        body: JSON.stringify({
+
+          access_key: 'af7b5c1d-d4ef-48c1-bb93-f1473dec3437',
+
+          subject: `Portfolio enquiry from ${formData.name}`,
+
+          ...formData,
+
+        }),
+
+      });
+
+      const data = await res.json();
+
+      if (!data.success) throw new Error(data.message || 'Request failed');
+
+      toast({
+
+        title: 'Message sent!',
+
+        description: "Thank you for reaching out. I'll get back to you soon.",
+
+      });
+
+      setFormData({ name: '', email: '', message: '' });
+
+    } catch (err) {
+
+      console.error('Form error:', err);
+
+      toast({
+
+        title: "Couldn't send that",
+
+        description: 'Please email me directly at gmenon.workco@gmail.com',
+
+        variant: 'destructive',
+
+      });
+
+    } finally {
+
+      setIsSending(false);
+
+    }
+
   };
 
   return (
@@ -68,7 +123,7 @@ export const ContactSection = () => {
 
               <div className="space-y-4">
                 <motion.a
-                  href="mailto:hello@designer.com"
+                  href="mailto:gmenon.workco@gmail.com"
                   whileHover={{ x: 5 }}
                   className="flex items-center gap-4 p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-all duration-300 group"
                 >
@@ -77,7 +132,7 @@ export const ContactSection = () => {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Email</p>
-                    <p className="font-medium">hello@designer.com</p>
+                    <p className="font-medium">gmenon.workco@gmail.com</p>
                   </div>
                 </motion.a>
 
@@ -90,7 +145,7 @@ export const ContactSection = () => {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Location</p>
-                    <p className="font-medium">Remote / Worldwide</p>
+                    <p className="font-medium">Chennai, India</p>
                   </div>
                 </motion.div>
               </div>
@@ -117,6 +172,7 @@ export const ContactSection = () => {
                 <input
                   type="text"
                   id="name"
+                  name="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
@@ -132,6 +188,7 @@ export const ContactSection = () => {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
@@ -146,6 +203,7 @@ export const ContactSection = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
@@ -157,12 +215,13 @@ export const ContactSection = () => {
 
               <motion.button
                 type="submit"
+                disabled={isSending}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium glow-effect transition-all duration-300"
               >
                 <Send className="w-4 h-4" />
-                Send Message
+                {isSending ? 'Sending...' : 'Send Message'}
               </motion.button>
             </motion.form>
           </div>

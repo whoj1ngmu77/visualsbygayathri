@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
-import { Instagram, Dribbble, Linkedin, Heart } from 'lucide-react';
+import { Dribbble, Linkedin, Heart } from 'lucide-react';
 
 const socialLinks = [
-  { name: 'Instagram', icon: Instagram, href: '#' },
-  { name: 'Dribbble', icon: Dribbble, href: '#' },
-  { name: 'LinkedIn', icon: Linkedin, href: '#' },
+  { name: 'Dribbble', icon: Dribbble, href: 'https://dribbble.com/jen_says11' },
+  { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/gayathri-menon-328376274/' },
 ];
 
 // Behance icon component since it's not in lucide
@@ -31,7 +30,7 @@ export const Footer = () => {
             whileHover={{ scale: 1.05 }}
             className="font-serif text-xl font-semibold text-gradient"
           >
-            Portfolio
+            Gayathri
           </motion.a>
 
           {/* Social Links */}
@@ -42,6 +41,8 @@ export const Footer = () => {
                 href={link.href}
                 whileHover={{ scale: 1.2, y: -2 }}
                 whileTap={{ scale: 0.95 }}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2.5 rounded-full bg-secondary/50 hover:bg-gradient-to-br hover:from-primary/20 hover:to-accent/20 transition-all duration-300 text-muted-foreground hover:text-foreground"
                 aria-label={link.name}
               >
@@ -49,7 +50,9 @@ export const Footer = () => {
               </motion.a>
             ))}
             <motion.a
-              href="#"
+              href="https://www.behance.net/gayathrimenon12"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.2, y: -2 }}
               whileTap={{ scale: 0.95 }}
               className="p-2.5 rounded-full bg-secondary/50 hover:bg-gradient-to-br hover:from-primary/20 hover:to-accent/20 transition-all duration-300 text-muted-foreground hover:text-foreground"
@@ -63,7 +66,7 @@ export const Footer = () => {
           <p className="text-sm text-muted-foreground flex items-center gap-1.5">
             © {currentYear} Made with 
             <Heart className="w-3.5 h-3.5 text-accent fill-accent" /> 
-            by Designer
+            by Gayathri Menon
           </p>
         </div>
       </div>

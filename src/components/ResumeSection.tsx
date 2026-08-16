@@ -57,14 +57,16 @@ export const ResumeSection = () => {
           </p>
           
           {/* Download Button */}
-          <motion.button
+          <motion.a
+            href="/resume.pdf"
+            download
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium glow-effect transition-all duration-300"
           >
             <Download className="w-4 h-4" />
             Download Resume
-          </motion.button>
+          </motion.a>
         </motion.div>
 
         {/* Timeline Grid */}

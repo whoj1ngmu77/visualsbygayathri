@@ -56,7 +56,7 @@ export const Navbar = () => {
             className="font-serif text-2xl font-semibold text-gradient"
             whileHover={{ scale: 1.05 }}
           >
-            Portfolio
+            Gayathri
           </motion.a>
 
           {/* Desktop Navigation */}
