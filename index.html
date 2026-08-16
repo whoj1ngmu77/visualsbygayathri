@@ -25,7 +25,19 @@
   <meta name="twitter:title" content="Gayathri Menon | Design Portfolio">
   <meta property="og:description" content="Crafting impactful visuals, one idea at a time. A graphic designer specializing in branding, social media design, and visual storytelling.">
   <meta name="twitter:description" content="Crafting impactful visuals, one idea at a time. A graphic designer specializing in branding, social media design, and visual storytelling.">
-</head>
+  <script id="theme-init">
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          if (t !== 'dark' && t !== 'light') {
+            t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          }
+          document.documentElement.classList.remove('light', 'dark');
+          document.documentElement.classList.add(t);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
 
   <body>
     <div id="root"></div>

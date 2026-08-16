@@ -281,3 +281,64 @@
     transform: scale(1);
   }
 }
+
+/* ============================================
+   LIGHT MODE — SUNSET
+   Every rule is scoped to html:not(.dark),
+   so dark mode is completely unaffected.
+   ============================================ */
+
+html:not(.dark) {
+  --background: 28 60% 95%;
+  --card: 26 48% 92%;
+  --secondary: 24 50% 89%;
+  --muted: 26 36% 90%;
+  --border: 22 34% 84%;
+  --input: 22 34% 84%;
+  --foreground: 268 26% 18%;
+  --card-foreground: 268 26% 18%;
+  --muted-foreground: 268 10% 40%;
+
+  --primary: 292 62% 48%;
+  --accent: 14 84% 58%;
+  --ring: 292 62% 48%;
+
+  --text-gradient-start: 292 72% 52%;
+  --text-gradient-end: 18 88% 56%;
+
+  /* sunset bands, horizon -> zenith */
+  --sun-core:   38 96% 72%;
+  --sun-mid:    16 92% 70%;
+  --sun-rose:   340 82% 74%;
+  --sun-violet: 280 62% 72%;
+}
+
+html:not(.dark) body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(72% 40% at 50% 104%, hsl(var(--sun-core)   / 0.92) 0%, transparent 60%),
+    radial-gradient(88% 52% at 50% 112%, hsl(var(--sun-mid)    / 0.72) 0%, transparent 66%),
+    radial-gradient(66% 46% at 14% 88%,  hsl(var(--sun-rose)   / 0.58) 0%, transparent 64%),
+    radial-gradient(64% 44% at 88% 82%,  hsl(var(--sun-rose)   / 0.50) 0%, transparent 62%),
+    radial-gradient(90% 62% at 50% -8%,  hsl(var(--sun-violet) / 0.60) 0%, transparent 68%);
+}
+
+html:not(.dark) body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.34;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+html:not(.dark) .card-glow,
+html:not(.dark) .gradient-border {
+  box-shadow: 0 1px 2px hsl(20 40% 40% / 0.06),
+              0 10px 28px -10px hsl(14 60% 45% / 0.18);
+}

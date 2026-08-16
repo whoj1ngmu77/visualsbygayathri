@@ -17,6 +17,15 @@ const colors = [
 ];
 
 export const CursorSparkles = () => {
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const finePointer = window.matchMedia('(pointer: fine)').matches;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setEnabled(finePointer && !reduced);
+  }, []);
+
   const [sparkles, setSparkles] = useState<Sparkle[]>([]);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -56,6 +65,8 @@ export const CursorSparkles = () => {
     }, 100);
     return () => clearInterval(cleanup);
   }, []);
+
+  if (!enabled) return null;
 
   return (
     <>
