@@ -4,31 +4,37 @@ import { Download, Calendar, Briefcase, GraduationCap } from 'lucide-react';
 
 const experience = [
   {
-    title: 'Design & Creative Exploration',
-    company: 'Personal Projects & Club Activities',
-    period: '2024 - Present',
-    description: 'While majoring in a technology-focused discipline, I consistently pursue my interest in design through personal projects, academic work, and club activities. I actively experiment with graphic design, visual branding, and digital layouts.',
+    title: 'Graphic Design Intern',
+    company: 'SpectoV',
+    period: 'Jan 2026 - Jun 2026',
+    description: 'Client-facing design across social media and brand marketing. Produced platform-ready posts aligned to an established brand identity, developed brand visibility assets from written briefs, and iterated directly with the client through feedback rounds.',
   },
   {
-    title: 'Creative Problem Solver',
-    company: 'Academic & Collaborative Work',
-    period: 'Ongoing',
-    description: 'I enjoy working on open projects, collaborating with peers, and exploring how design and technology intersect. Using design as both a creative outlet and a problem-solving tool.',
+    title: 'Design Team Member',
+    company: 'University Clubs & Cultural Societies, VIT Chennai',
+    period: '2024 - Present',
+    description: 'Design lead on event campaign identities for Thanima and the Office of Student Welfare - posters, social announcements and promotional carousels. Built bilingual English/Malayalam layouts and recurring templates that kept branding consistent across event series.',
+  },
+  {
+    title: 'Freelance Designer',
+    company: 'Independent Clients',
+    period: '2024 - Present',
+    description: 'Social media graphics, posters and brand assets on a project basis. Manage the full engagement independently - scoping the brief, presenting concepts, revising and handing off final files.',
   },
 ];
 
 const education = [
   {
-    title: 'Bachelor of Technology (B.Tech)',
-    institution: 'Vellore Institute of Technology',
+    title: 'B.Tech, Electrical and Computer Science Engineering',
+    institution: 'Vellore Institute of Technology, Chennai',
     period: '2024 - 2028',
-    description: 'Specialized in Electrical and Computer Science Engineering, with a strong foundation in problem-solving, logic, and technical thinking — skills that complement my creative approach to design.',
+    description: 'Engineering grounding in problem-solving and systems thinking, which shapes how I approach structure and hierarchy in design work.',
   },
   {
-    title: 'UX Design Certificate',
+    title: 'Google UX Design Professional Certificate',
     institution: 'Coursera',
     period: '2026',
-    description: 'Completed a comprehensive UX/UI design program, gaining hands-on experience in user research, wireframing, prototyping, and usability principles, culminating in a capstone project focused on solving real-world design challenges.',
+    description: 'User research, wireframing, prototyping, usability testing and accessibility, completed with a capstone project on a real-world design problem.',
   },
 ];
 
