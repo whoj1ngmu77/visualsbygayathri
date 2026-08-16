@@ -3,20 +3,20 @@ import { motion, useInView } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 
 // Posters
-import design002 from '@/assets/posters/design002.png';
-import design003 from '@/assets/posters/design003.png';
-import thanimaArcade from '@/assets/posters/thanima-arcade.png';
-import design004 from '@/assets/posters/design004.png';
-import posterFalling from '@/assets/posters/poster-falling.png';
-import posterIswhatitis from '@/assets/posters/poster-iswhatitis.png';
+import design002 from '@/assets/posters/design002.webp';
+import design003 from '@/assets/posters/design003.webp';
+import thanimaArcade from '@/assets/posters/thanima-arcade.webp';
+import design004 from '@/assets/posters/design004.webp';
+import posterFalling from '@/assets/posters/poster-falling.webp';
+import posterIswhatitis from '@/assets/posters/poster-iswhatitis.webp';
 
 // Social Media
-import keralaUntangled from '@/assets/social/kerala-untangled.png';
-import satyagraha from '@/assets/social/satyagraha.png';
-import kadhakaludeLokam from '@/assets/social/kadhakalude-lokam.png';
-import kavyanilaavu from '@/assets/social/kavyanilaavu.png';
-import burnoutSigns from '@/assets/social/burnout-signs.png';
-import mentalWellness from '@/assets/social/mental-wellness.png';
+import keralaUntangled from '@/assets/social/kerala-untangled.webp';
+import satyagraha from '@/assets/social/satyagraha.webp';
+import kadhakaludeLokam from '@/assets/social/kadhakalude-lokam.webp';
+import kavyanilaavu from '@/assets/social/kavyanilaavu.webp';
+import burnoutSigns from '@/assets/social/burnout-signs.webp';
+import mentalWellness from '@/assets/social/mental-wellness.webp';
 
 type Category = 'all' | 'social' | 'posters' | 'logos' | 'other';
 

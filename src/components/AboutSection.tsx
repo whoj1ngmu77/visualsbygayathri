@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Palette, Heart, Zap } from 'lucide-react';
-import profilePhoto from '@/assets/profile-photo.png';
+import profilePhoto from '@/assets/profile-photo.webp';
 
 export const AboutSection = () => {
   const ref = useRef(null);
