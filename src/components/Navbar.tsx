@@ -53,10 +53,12 @@ export const Navbar = () => {
               e.preventDefault();
               scrollToSection('#home');
             }}
-            className="font-serif text-2xl font-semibold text-gradient"
+            className="inline-flex items-baseline"
             whileHover={{ scale: 1.05 }}
           >
-            Gayathri
+            <span className="font-serif text-xl md:text-2xl font-medium tracking-[0.02em]">Gayathri</span>
+
+            <span className="font-serif text-xl md:text-2xl font-light italic text-gradient ml-1.5">Menon</span>
           </motion.a>
 
           {/* Desktop Navigation */}

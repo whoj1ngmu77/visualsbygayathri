@@ -28,9 +28,11 @@ export const Footer = () => {
               document.querySelector('#home')?.scrollIntoView({ behavior: 'smooth' });
             }}
             whileHover={{ scale: 1.05 }}
-            className="font-serif text-xl font-semibold text-gradient"
+            className="inline-flex items-baseline"
           >
-            Gayathri
+            <span className="font-serif text-xl md:text-2xl font-medium tracking-[0.02em]">Gayathri</span>
+
+            <span className="font-serif text-xl md:text-2xl font-light italic text-gradient ml-1.5">Menon</span>
           </motion.a>
 
           {/* Social Links */}

@@ -353,3 +353,18 @@ html:not(.dark) .gradient-border {
     scroll-behavior: auto !important;
   }
 }
+
+/* Themed focus ring instead of the browser default */
+
+a:focus-visible,
+
+button:focus-visible {
+
+  outline: 2px solid hsl(var(--primary));
+
+  outline-offset: 3px;
+
+  border-radius: 6px;
+
+}
+
