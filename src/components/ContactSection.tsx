@@ -33,6 +33,7 @@ export const ContactSection = () => {
           access_key: 'af7b5c1d-d4ef-48c1-bb93-f1473dec3437',
 
           subject: `Portfolio enquiry from ${formData.name}`,
+          replyto: formData.email,
 
           ...formData,
 

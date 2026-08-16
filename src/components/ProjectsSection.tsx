@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { Expand, X } from 'lucide-react';
 
 // Posters
 import design002 from '@/assets/posters/design002.webp';
@@ -18,56 +18,50 @@ import kavyanilaavu from '@/assets/social/kavyanilaavu.webp';
 import burnoutSigns from '@/assets/social/burnout-signs.webp';
 import mentalWellness from '@/assets/social/mental-wellness.webp';
 
-type Category = 'all' | 'social' | 'posters' | 'logos' | 'other';
+type Category = 'all' | 'social' | 'posters';
 
 interface Project {
   id: number;
   title: string;
   category: Category;
   image: string;
-  color: string;
-  height: string;
+  blurb?: string;
 }
 
 const categories: { id: Category; label: string }[] = [
   { id: 'all', label: 'All Work' },
   { id: 'social', label: 'Social Media' },
   { id: 'posters', label: 'Posters' },
-  { id: 'logos', label: 'Logos & Branding' },
-  { id: 'other', label: 'Other Creative' },
 ];
 
 const projects: Project[] = [
-  // Posters (1-4 as mentioned + existing 2)
-  { id: 1, title: 'Thanima Arcade', category: 'posters', image: thanimaArcade, color: 'from-red-500/20 to-amber-500/20', height: 'h-96' },
-  { id: 2, title: 'Seasonal Depression', category: 'posters', image: design004, color: 'from-cyan-500/20 to-blue-500/20', height: 'h-72' },
-  { id: 3, title: 'Falling Off The Face Of Earth', category: 'posters', image: posterFalling, color: 'from-purple-500/20 to-pink-500/20', height: 'h-96' },
-  { id: 4, title: 'It Is What It Is', category: 'posters', image: posterIswhatitis, color: 'from-amber-500/20 to-orange-500/20', height: 'h-96' },
-  { id: 5, title: 'Little by Little', category: 'posters', image: design002, color: 'from-purple-500/20 to-indigo-500/20', height: 'h-96' },
-  { id: 6, title: 'Who Are You?', category: 'posters', image: design003, color: 'from-pink-500/20 to-purple-500/20', height: 'h-96' },
-  
-  // Social Media (5,6,8,9,10)
-  { id: 7, title: 'Kerala Untangled', category: 'social', image: keralaUntangled, color: 'from-green-500/20 to-amber-500/20', height: 'h-96' },
-  { id: 8, title: 'Satyagraha', category: 'social', image: satyagraha, color: 'from-teal-500/20 to-cyan-500/20', height: 'h-96' },
-  { id: 9, title: 'Kadhakalude Lokam', category: 'social', image: kadhakaludeLokam, color: 'from-sky-500/20 to-blue-500/20', height: 'h-96' },
-  { id: 10, title: 'Kavyanilaavu', category: 'social', image: kavyanilaavu, color: 'from-blue-500/20 to-indigo-500/20', height: 'h-96' },
-  { id: 11, title: 'Burnout Signs', category: 'social', image: burnoutSigns, color: 'from-rose-500/20 to-pink-500/20', height: 'h-96' },
-  { id: 12, title: 'Mental Wellness Tips', category: 'social', image: mentalWellness, color: 'from-sky-500/20 to-cyan-500/20', height: 'h-96' },
+  { id: 1, title: 'Thanima Arcade', category: 'posters', image: thanimaArcade, blurb: 'Event poster for a campus arcade day — vintage carnival typography and ticket-stub framing.' },
+  { id: 2, title: 'Seasonal Depression', category: 'posters', image: design004, blurb: 'Personal piece exploring mood and light.' },
+  { id: 3, title: 'Falling Off The Face Of Earth', category: 'posters', image: posterFalling, blurb: 'Personal poster — dissolving type over a falling figure.' },
+  { id: 4, title: 'It Is What It Is', category: 'posters', image: posterIswhatitis, blurb: 'Editorial poster built around fragmented, scattered text.' },
+  { id: 5, title: 'Little by Little', category: 'posters', image: design002, blurb: 'Typographic piece on incremental change.' },
+  { id: 6, title: 'Who Are You?', category: 'posters', image: design003, blurb: 'Identity-themed experimental poster.' },
+  { id: 7, title: 'Kerala Untangled', category: 'social', image: keralaUntangled, blurb: 'Promo design for a Kerala Piravi quiz — collage layout built from regional imagery.' },
+  { id: 8, title: 'Satyagraha', category: 'social', image: satyagraha, blurb: 'Gandhi Jayanthi online quiz announcement, currency-note engraving motifs.' },
+  { id: 9, title: 'Kadhakalude Lokam', category: 'social', image: kadhakaludeLokam, blurb: 'Storytelling event announcement for the Malayalam literary club.' },
+  { id: 10, title: 'Kavyanilaavu', category: 'social', image: kavyanilaavu, blurb: 'Poetry writing competition poster — quill and parchment illustration.' },
+  { id: 11, title: 'Burnout Signs', category: 'social', image: burnoutSigns, blurb: 'Carousel post on workplace burnout — numbered list layout.' },
+  { id: 12, title: 'Mental Wellness Tips', category: 'social', image: mentalWellness, blurb: 'Employee wellness carousel, soft palette and clear hierarchy.' },
 ];
 
 export const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState<Category>('all');
+  const [selected, setSelected] = useState<Project | null>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  const filteredProjects = activeCategory === 'all' 
-    ? projects 
+  const filtered = activeCategory === 'all'
+    ? projects
     : projects.filter(p => p.category === activeCategory);
 
   return (
     <section id="projects" className="py-32 relative">
       <div ref={ref} className="container mx-auto px-6">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -81,12 +75,11 @@ export const ProjectsSection = () => {
             Selected <span className="text-gradient">Works</span>
           </h2>
           <p className="max-w-2xl mx-auto text-muted-foreground">
-            A curated collection of projects spanning branding, social media, 
-            and creative design. Each piece tells a unique story.
+            A curated collection of posters and social campaigns, mostly for
+            campus events and cultural clubs. Click any piece to view it full size.
           </p>
         </motion.div>
 
-        {/* Category Filter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -99,6 +92,7 @@ export const ProjectsSection = () => {
               onClick={() => setActiveCategory(category.id)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              aria-pressed={activeCategory === category.id}
               className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeCategory === category.id
                   ? 'bg-gradient-to-r from-primary to-accent text-primary-foreground glow-effect'
@@ -110,73 +104,97 @@ export const ProjectsSection = () => {
           ))}
         </motion.div>
 
-        {/* Masonry Grid */}
-        <motion.div
-          layout
-          className="masonry-grid"
-        >
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="masonry-item"
-            >
+        {filtered.length === 0 ? (
+          <p className="text-center text-muted-foreground py-16">
+            Nothing here yet — new work coming soon.
+          </p>
+        ) : (
+          <motion.div layout className="masonry-grid">
+            {filtered.map((project, index) => (
               <motion.div
-                whileHover={{ y: -8, rotateX: 2, rotateY: 2 }}
-                transition={{ duration: 0.3 }}
-                className={`relative ${project.height} rounded-2xl overflow-hidden group cursor-pointer gradient-border`}
-                style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
+                key={project.id}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.3) }}
+                className="masonry-item"
               >
-                {/* Image or Gradient Background */}
-                {project.image ? (
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="absolute inset-[1px] w-[calc(100%-2px)] h-[calc(100%-2px)] rounded-2xl object-cover"
-                  />
-                ) : (
-                  <div className={`absolute inset-[1px] rounded-2xl bg-gradient-to-br ${project.color}`} />
-                )}
-                
-                {/* Content Overlay - only show for placeholder projects */}
-                {!project.image && (
-                  <div className="absolute inset-[1px] rounded-2xl bg-card/80 backdrop-blur-sm flex items-center justify-center transition-all duration-300 group-hover:bg-card/60">
-                    <div className="text-center p-6">
-                      <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent" />
-                      </div>
-                      <h3 className="font-serif text-lg font-medium mb-2">{project.title}</h3>
-                      <span className="text-xs text-muted-foreground uppercase tracking-wider">
-                        {categories.find(c => c.id === project.category)?.label}
+                <motion.button
+                  onClick={() => setSelected(project)}
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.3 }}
+                  aria-label={`View ${project.title} full size`}
+                  className="w-full text-left rounded-2xl overflow-hidden group gradient-border block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <div className="relative overflow-hidden rounded-2xl">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-auto rounded-2xl"
+                    />
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                      <span className="inline-flex items-center gap-2 text-sm font-medium text-foreground">
+                        <Expand className="w-4 h-4" /> View full size
                       </span>
                     </div>
                   </div>
-                )}
-
-                {/* Hover Effect */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  className="absolute inset-[1px] rounded-2xl bg-gradient-to-br from-primary/90 to-accent/90 flex items-center justify-center"
-                >
-                  <motion.div
-                    initial={{ scale: 0.8 }}
-                    whileHover={{ scale: 1 }}
-                    className="text-center text-primary-foreground"
-                  >
-                    <ExternalLink className="w-8 h-8 mx-auto mb-3" />
-                    <span className="text-sm font-medium">{project.title}</span>
-                  </motion.div>
-                </motion.div>
+                  <div className="px-1 pt-4 pb-2">
+                    <h3 className="font-serif text-lg font-medium">{project.title}</h3>
+                    <span className="text-xs text-muted-foreground uppercase tracking-wider">
+                      {categories.find(c => c.id === project.category)?.label}
+                    </span>
+                  </div>
+                </motion.button>
               </motion.div>
-            </motion.div>
-          ))}
-        </motion.div>
+            ))}
+          </motion.div>
+        )}
       </div>
+
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelected(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={selected.title}
+            className="fixed inset-0 z-[60] bg-background/95 backdrop-blur-md flex items-center justify-center p-4 md:p-10 cursor-zoom-out"
+          >
+            <button
+              onClick={() => setSelected(null)}
+              aria-label="Close"
+              className="absolute top-6 right-6 p-3 rounded-full bg-secondary/70 hover:bg-secondary transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="max-w-5xl w-full flex flex-col items-center gap-5 cursor-default"
+            >
+              <img
+                src={selected.image}
+                alt={selected.title}
+                className="max-h-[72vh] w-auto rounded-xl shadow-2xl"
+              />
+              <div className="text-center max-w-xl">
+                <h3 className="font-serif text-2xl font-medium mb-2">{selected.title}</h3>
+                {selected.blurb && (
+                  <p className="text-muted-foreground text-sm leading-relaxed">{selected.blurb}</p>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
