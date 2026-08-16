@@ -342,3 +342,14 @@ html:not(.dark) .gradient-border {
   box-shadow: 0 1px 2px hsl(20 40% 40% / 0.06),
               0 10px 28px -10px hsl(14 60% 45% / 0.18);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
